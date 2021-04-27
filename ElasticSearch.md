@@ -1,8 +1,9 @@
 
-# Elastic Search
+# elasticSearch
 
 
 ## DATA ERIN
+
 Data erin stoppen, 3 personen:
 curl <HEADER> <METHOD> <DATA>
 
@@ -10,7 +11,7 @@ https://stackoverflow.com/questions/47544966/content-type-header-application-x-w
 
 Die header moet er wel bij. Oude tutorials laten deze weg en dan krijg je foutmeldingen.
 
-
+```
  curl -H 'Content-Type: application/json'  -XPUT 'http://localhost:9200/personen/figuur/1' -d  ' {
 "first_name" : "Jane",
 "last_name": "Smith",
@@ -39,28 +40,29 @@ curl -H'Content-Type:application/json' -XPUT 'http://localhost:9200/personen/fig
 },
 "join_date":"1940/05/10"
 }'
+```
 
-XPUT vs PUT uitzoeken
 
-Bij PUT komt het er ook in, Content-Type moet erbij.
 
 ## ZOEKEN
 
 Op id, index/type/id in de url
-
+```
 curl -H 'Content-Type: application/json'  -XGET 'http://localhost:9200/personen/figuur/7'
+```
 
 
 XGET hoeft niet en voor het ophalen ook Content-Type niet meegeven, zelfs GET hoeft niet (default)
-
+```
 curl 'http://localhost:9200/personen/figuur/7'
-
+```
 
 ### Algemeen zoeken
-curl -XGET 'http://localhost:9200/personen/figuur/_search'
 
+    curl -XGET 'http://localhost:9200/personen/figuur/_search'
 
-
+### Specifiek zoeken
+```
 curl -X GET "localhost:9200/personen/figuur/_search?pretty" -H 'Content-Type: application/json' -d'
 {
   "query": {
@@ -72,7 +74,6 @@ curl -X GET "localhost:9200/personen/figuur/_search?pretty" -H 'Content-Type: ap
 }
 '
 
-### Specific
 
 curl -X GET -H 'Content-Type: application/json' http://localhost:9200/personen/figuur/_search?pretty -d '{
       "query" : {
@@ -89,6 +90,7 @@ curl -X GET -H 'Content-Type: application/json' http://localhost:9200/personen/f
 
 
 curl -XGET "http://localhost:9200/personen/figuur/_search?q=last_name:Peet"
+```
 
 ## DELETE
 

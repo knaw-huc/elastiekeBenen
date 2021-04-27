@@ -1,0 +1,5 @@
+# README
+
+elasticSearch learning & experiments
+
+
